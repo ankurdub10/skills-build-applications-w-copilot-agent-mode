@@ -30,6 +30,10 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 if os.environ.get('CODESPACE_NAME'):
     ALLOWED_HOSTS.append(f"{os.environ.get('CODESPACE_NAME')}-8000.app.github.dev")
 
+# Ensure we don't accidentally end up with duplicates (e.g. when the
+# environment logic runs more than once or gets called in tests).
+ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS))
+
 
 # Application definition
 
