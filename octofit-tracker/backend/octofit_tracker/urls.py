@@ -5,8 +5,11 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 router = routers.DefaultRouter()
-# Register your viewsets here, e.g.:
-# router.register(r'users', views.UserViewSet)
+router.register(r'users', views.UserViewSet)
+router.register(r'teams', views.TeamViewSet)
+router.register(r'activities', views.ActivityViewSet)
+router.register(r'leaderboard', views.LeaderboardViewSet)
+router.register(r'workouts', views.WorkoutViewSet)
 
 @api_view(['GET'])
 def api_root(request):

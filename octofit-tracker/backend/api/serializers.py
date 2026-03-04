@@ -1,20 +1,27 @@
 from rest_framework import serializers
-from rest_framework.serializers import Serializer, CharField, IntegerField, ListSerializer
-from bson import ObjectId
+from api.models import User, Team, Activity, Leaderboard, Workout
 
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ['id', 'name']
 
-class ObjectIdField(serializers.Field):
-    """Custom field to serialize ObjectId to string"""
-    
-    def to_representation(self, value):
-        """Convert ObjectId to string"""
-        if isinstance(value, ObjectId):
-            return str(value)
-        return str(value)
-    
-    def to_internal_value(self, data):
-        """Convert string to ObjectId"""
-        try:
-            return ObjectId(data)
-        except Exception:
-            self.fail('invalid')
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'name', 'email', 'team']
+
+class ActivitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Activity
+        fields = ['id', 'user', 'type', 'duration', 'timestamp']
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = ['id', 'name', 'description', 'recommended_for']
+
+class LeaderboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Leaderboard
+        fields = ['id', 'user', 'points']

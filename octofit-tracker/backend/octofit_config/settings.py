@@ -71,7 +71,6 @@ if os.environ.get('CODESPACE_NAME'):
     CORS_ALLOWED_ORIGINS.append(f"https://{os.environ.get('CODESPACE_NAME')}-3000.app.github.dev")
 
 ROOT_URLCONF = 'octofit_config.urls'
-ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
